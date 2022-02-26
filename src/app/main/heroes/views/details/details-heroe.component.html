@@ -1,0 +1,101 @@
+<div class="flex flex-col w-full flex-auto">
+  <!-- Header -->
+  <div class="relative flex-auto w-full h-12 px-8 sm:px-12 bg-accent-100">
+    <!-- Close button -->
+    <div class="flex items-center justify-end w-full max-w-3xl mx-auto pt-6">
+      <button mat-icon-button [routerLink]="['../']">
+        <mat-icon
+        >close</mat-icon>
+      </button>
+    </div>
+  </div>
+  <!-- Heroe form -->
+  <div class="relative flex flex-col flex-auto items-center px-6 sm:px-12">
+    <div class="w-full max-w-3xl lex flex-col flex-auto">
+      <form [formGroup]="heroeForm" class="flex flex-col flex-auto">
+        <!-- Name -->
+        <div class="mt-8">
+          <mat-form-field class="w-full" [appearance]="'outline'">
+            <mat-label>Nombre</mat-label>
+            <input
+              matInput
+              type="text"
+              autocomplete="off"
+              [formControlName]="'name'"
+              [placeholder]="'Name'"
+              [spellcheck]="false"
+            />
+          </mat-form-field>
+        </div>
+
+        <!-- Code -->
+        <div class="mt-8">
+          <mat-form-field class="w-full" [appearance]="'outline'">
+            <mat-label>Código</mat-label>
+            <input
+              matInput
+              type="text"
+              autocomplete="off"
+              [formControlName]="'code'"
+              [placeholder]="'Código'"
+              [spellcheck]="false"
+            />
+          </mat-form-field>
+        </div>
+
+        <!-- Company -->
+        <div class="mt-8">
+          <mat-form-field class="w-full" [appearance]="'outline'">
+            <mat-label>Compañia</mat-label>
+            <input
+              matInput
+              type="text"
+              autocomplete="off"
+              [formControlName]="'company'"
+              [placeholder]="'Compañia'"
+              [spellcheck]="false"
+            />
+          </mat-form-field>
+        </div>
+
+        <!-- Description -->
+        <div class="mt-8">
+          <mat-form-field
+          [appearance]="'outline'"
+            class="w-full"
+          >
+            <mat-label>Descripción</mat-label>
+            <textarea
+              matInput
+              [formControlName]="'description'"
+              [placeholder]="'Descripción'"
+              [rows]="5"
+              [spellcheck]="false"
+              matTextareaAutosize
+            ></textarea>
+          </mat-form-field>
+        </div>
+      </form>
+       <!-- Actions -->
+       <div
+       class="flex items-center mt-10 -mx-6 sm:-mx-12 py-4 pr-4 pl-1 sm:pr-12 sm:pl-7 border-t"
+     >
+       <!-- Delete -->
+       <button mat-button [color]="'warn'" (click)="deleteHeroe()">
+         Delete
+       </button>
+
+       <!-- Save -->
+       <button
+         class="ml-4"
+         mat-flat-button
+         [color]="'primary'"
+         [disabled]="heroeForm.invalid"
+         (click)="updateHereo()"
+       >
+         Save
+       </button>
+     </div>
+    </div>
+  </div>
+</div>

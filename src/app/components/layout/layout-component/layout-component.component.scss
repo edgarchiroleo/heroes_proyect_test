@@ -1,0 +1,16 @@
+:host {
+    display: flex;
+    flex: 1 1 auto;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  .layout-centered {
+    position: relative;
+    display: flex;
+    flex: 1 1 auto;
+    width: 100%;
+    .header{
+      background-color: var(--primary-color) !important;
+    }
+  }
+}

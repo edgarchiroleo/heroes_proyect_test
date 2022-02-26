@@ -1,0 +1,16 @@
+:host{
+  mat-drawer-content{
+    display: flex;
+    flex-direction: column;
+  }
+  .mat-header-row{
+    background-color: rgb(248 250 252 / var(--tw-bg-opacity)) !important;
+    color: var(--text-primary-lighter-color) !important;
+  }
+
+  .mat-row{
+    &:hover{
+      background-color: rgb(248 250 252 / var(--tw-bg-opacity)) !important;
+    }
+  }
+}
