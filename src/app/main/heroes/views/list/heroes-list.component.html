@@ -1,0 +1,157 @@
+<div class="absolute inset-0 flex flex-col min-w-0 bg-white">
+  <mat-drawer-container
+    class="flex-auto h-full bg-card dark:bg-transparent"
+    (backdropClick)="onBackdropClicked()"
+  >
+    <!-- Drawer -->
+    <mat-drawer
+      class="w-full md:w-96 flex flex-auto"
+      [mode]="'side'"
+      [opened]="false"
+      [position]="'end'"
+      [disableClose]="true"
+      #matDrawer
+    >
+      <router-outlet></router-outlet>
+    </mat-drawer>
+
+    <mat-drawer-content>
+      <div class="flex overflow-hidden flex-col flex-auto">
+        <!-- Header -->
+        <div class="relative flex flex-col flex-0 pt-8 px-6 md:px-8 border-b">
+          <div
+            class="absolute inset-x-0 bottom-0"
+            [ngClass]="{ invisible: !isLoading }"
+          >
+            <mat-progress-bar [mode]="'indeterminate'"></mat-progress-bar>
+          </div>
+          <div
+            class="relative flex flex-row flex-0 items-center justify-between"
+          >
+            <!-- Title -->
+            <div class="text-4xl font-extrabold tracking-tight">Heroes</div>
+            <!-- Actions -->
+            <div class="flex shrink-0 items-center sm:mt-0 sm:ml-4">
+              <!-- Add product button -->
+              <button
+                mat-flat-button
+                [color]="'primary'"
+                (click)="createHeroe()"
+              >
+                <mat-icon>add</mat-icon>
+                <span class="ml-2 mr-1">Adicionar</span>
+              </button>
+            </div>
+          </div>
+          <div class="pt-2 flex flex-row">
+            <!-- Search -->
+            <mat-form-field class="min-w-64 mr-4" [appearance]="'outline'">
+              <mat-icon class="icon-size-5" matPrefix>search</mat-icon>
+              <input
+                matInput
+                [formControl]="searchInputControl"
+                [autocomplete]="'off'"
+                [placeholder]="'Buscar heroes'"
+              />
+            </mat-form-field>
+          </div>
+        </div>
+
+        <!-- Main -->
+        <div class="flex flex-auto overflow-hidden">
+          <div
+            class="flex flex-col flex-auto sm:mb-18 overflow-hidden sm:overflow-y-auto"
+          >
+            <div class="flex flex-col flex-auto">
+              <table
+                mat-table
+                class="data-table"
+                #table
+                [dataSource]="dataSource"
+                matSort
+                matSortStart="desc"
+              >
+                <!-- Nombre -->
+                <ng-container matColumnDef="name">
+                  <th
+                    mat-header-cell
+                    class="pl-16"
+                    *matHeaderCellDef
+                    mat-sort-header
+                  >
+                    Nombre
+                  </th>
+                  <td mat-cell class="pl-16" *matCellDef="let data">
+                    {{ data.name }}
+                  </td>
+                </ng-container>
+
+                <!-- Code-->
+                <ng-container matColumnDef="code">
+                  <th mat-header-cell class="pl-16" *matHeaderCellDef>
+                    Código
+                  </th>
+                  <td mat-cell class="pl-16" *matCellDef="let data">
+                    {{ data.code }}
+                  </td>
+                </ng-container>
+
+                <!--Company -->
+                <ng-container matColumnDef="company">
+                  <th mat-header-cell class="pl-16" *matHeaderCellDef>
+                    Productora
+                  </th>
+                  <td mat-cell class="pl-16" *matCellDef="let data">
+                    {{ data.company }}
+                  </td>
+                </ng-container>
+
+                <!-- Buttons Column -->
+                <ng-container matColumnDef="actions">
+                  <th mat-header-cell class="pl-16" *matHeaderCellDef></th>
+                  <td
+                    mat-cell
+                    class="pl-16 buttons-cell"
+                    *matCellDef="let data"
+                  >
+                    <div class="flex grow flex-row items-center justify-end">
+                      <button
+                        mat-icon-button
+                        aria-label="editar"
+                        (click)="goHeroe(data.id);$event.stopPropagation()"
+                      >
+                        <mat-icon>edit</mat-icon>
+                      </button>
+                      <button
+                        mat-icon-button
+                        aria-label="borrar"
+                        (click)="deleteHeroe(data.id);$event.stopPropagation()"
+                      >
+                        <mat-icon>delete</mat-icon>
+                      </button>
+                    </div>
+                  </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+
+                <tr
+                  mat-row
+                  *matRowDef="let data; columns: displayedColumns"
+                ></tr>
+              </table>
+            </div>
+            <mat-paginator
+              class="border-t-2 border-solid"
+              [length]="pagination.length"
+              [pageIndex]="pagination.page"
+              [pageSize]="pagination.size"
+              [pageSizeOptions]="[5, 10, 25, 100]"
+              [showFirstLastButtons]="true"
+            >
+            </mat-paginator>
+          </div>
+        </div>
+      </div>
+    </mat-drawer-content>
+  </mat-drawer-container>
+</div>
