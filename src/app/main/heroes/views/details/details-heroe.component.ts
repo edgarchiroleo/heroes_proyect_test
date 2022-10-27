@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatDrawerToggleResult } from '@angular/material/sidenav';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
@@ -16,12 +16,12 @@ import { HeroesListComponent } from '../list/heroes-list.component';
 export class HeroeDetailsComponent implements OnInit, OnDestroy {
   // Public
   heroe: IHeroeModel;
-  heroeForm: FormGroup;
+  heroeForm: UntypedFormGroup;
   heroes: IHeroeModel[];
   //Private
   private _unsubscribeAll: Subject<any> = new Subject<any>();
   constructor(
-    private _formBuilder: FormBuilder,
+    private _formBuilder: UntypedFormBuilder,
     private _heroesService: HeroesService,
     private _heroesListComponent: HeroesListComponent,
     private _changeDetectorRef: ChangeDetectorRef,

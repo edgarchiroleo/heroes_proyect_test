@@ -7,7 +7,7 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { Observable, Subject, merge } from 'rxjs';
 import { DataSource } from '@angular/cdk/table';
 import { debounceTime, map, switchMap, takeUntil } from 'rxjs/operators';
@@ -27,7 +27,7 @@ import { MatDrawer } from '@angular/material/sidenav';
 export class HeroesListComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('matDrawer', { static: true }) matDrawer: MatDrawer;
   // Public Properties
-  searchInputControl: FormControl = new FormControl();
+  searchInputControl: UntypedFormControl = new UntypedFormControl();
   dataSource: HeroesDataSource;
   displayedColumns = ['name', 'code', 'company', 'actions'];
   pagination: IHeroePagination;
