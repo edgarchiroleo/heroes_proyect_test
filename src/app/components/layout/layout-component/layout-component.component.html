@@ -6,7 +6,7 @@
       >
         <!-- Header -->
         <div
-          class="relative flex flex-0 items-center w-full h-24 sm:h-32 px-4 md:px-6 z-49 header border-b print:hidden"
+          class="relative flex flex-0 justify-between w-full h-24 sm:h-32 px-4 md:px-6 z-49 header border-b print:hidden"
         >
           <!-- Logo -->
           <div class="flex items-center mx-2 lg:mr-8">
@@ -391,6 +391,14 @@
               </svg>
             </div>
           </div>
+
+          <button
+                mat-flat-button
+                [color]="'primary'"
+                (click)="logout()"
+              >
+                <span class="ml-2 mr-1">Cerrar Sesión</span>
+              </button>
         </div>
         <!-- Header -->
         <!-- Content -->

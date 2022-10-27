@@ -8,6 +8,9 @@ import { LayoutComponent} from './components/layout/layout-component/layout-comp
 import { MockApiModule } from './mock-api/mock-api.module';
 import { HttpClientModule } from '@angular/common/http';
 import { HeroesMockApi } from './mock-api/heroes/api';
+import { AuthModule } from '@auth0/auth0-angular'
+import { environment } from 'src/environments/environment';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -18,8 +21,12 @@ import { HeroesMockApi } from './mock-api/heroes/api';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    MatButtonModule,
     MockApiModule.forRoot([HeroesMockApi]),
-    HttpClientModule
+    HttpClientModule,
+    AuthModule.forRoot({
+      ...environment.auth
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
