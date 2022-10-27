@@ -5,6 +5,7 @@ import {
   RouterModule,
   Routes,
 } from '@angular/router';
+import { AuthGuard } from '@auth0/auth0-angular';
 import { LayoutComponent } from './components/layout/layout-component/layout-component.component';
 
 const routerConfig: ExtraOptions = {
@@ -16,6 +17,8 @@ const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'heroes' },
   {
     path: '',
+    canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard],
     component: LayoutComponent,
     children: [
       {
